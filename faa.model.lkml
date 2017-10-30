@@ -1,4 +1,4 @@
-connection: "red_flight"
+connection: "partnerred_flightstats"
 # include all views in this project
 include: "*.view"
 # include all dashboards in this project
