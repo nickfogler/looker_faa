@@ -25,6 +25,18 @@ view: flights {
     sql: ${distance} ;;
   }
 
+  measure: total_distance_thresh {
+    type:  sum
+    sql:  sum(${distance}) where ${distance} > 1000;;
+  }
+
+  dimension: distance_tiered_doubling {
+    type:  tier
+    sql:  ${distance} ;;
+    style:  integer
+    tiers: [0, 100, 200, 400, 800, 1600, 3200]
+  }
+
   measure: count {
     type: count
     drill_fields: [detail*]
@@ -33,6 +45,15 @@ view: flights {
   measure: count_distance {
     type: count_distinct
     sql: ${distance} ;;
+  }
+measure: standard_deviation{
+  type: average
+  sql:  round(sqrt(mean(power(${distance} - mean(${distance}), 2))),2) ;;
+}
+
+measure:   testmeasure102{
+  type: number
+  sql: if(abs(${distance} - mean(${distance})) >  ${standard_deviation} * 3, "Yes", "No")  ;;
   }
 
   dimension: distance_tiered {
@@ -95,7 +116,14 @@ view: flights {
   }
 
 ########################################################################################
+# this is a comment
+# ctrl + s saves things
+# give me more shortcuts
 
+  dimension: testfield101 {
+    type:  string
+    sql:  ${distance} || ' miles ' ;;
+  }
   dimension: arrival_delay {
     view_label: "Flights Details"
     type: number
@@ -103,6 +131,14 @@ view: flights {
     sql: ${TABLE}.arr_delay ;;
   }
 
+  dimension: categories {
+    type:  string
+    sql:  case(when ${distance} between 0 and 499 then 'Short flight.'
+              when ${distance} between 500 and 4999 then 'Medium flight'
+              when ${distance} >= 5000 then 'Long Flight' ;;
+
+
+  }
   dimension_group: arrival {
     view_label: "Flights Details"
     type: time
