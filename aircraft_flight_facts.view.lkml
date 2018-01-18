@@ -55,7 +55,7 @@ view: aircraft_flight_facts {
 
   measure: average_flight_distance {
     type: average
-     sql:  ${distance_per_flight} ;;
+     sql:  round(avg(${distance_per_flight}),2) ;;
   }
 
 #   measure: count {
