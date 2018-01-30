@@ -53,6 +53,11 @@ view: aircraft_flight_facts {
     sql: ${distance_per_flight} ;;
   }
 
+  measure: average_flight_distance {
+    type: average
+     sql:  ${distance_per_flight} ;;
+  }
+
 #   measure: count {
 #     type: count
 #     drill_fields: [detail*]
