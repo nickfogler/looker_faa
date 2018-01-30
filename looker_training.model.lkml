@@ -330,7 +330,126 @@ view: ecomm_looker_training_set {
 
 explore: fruit_basket {}
 view: fruit_basket {
-  sql_table_name: public.fruit_basket ;;
+  derived_table: {
+    sql: select
+    'lime' as fruit_type,
+    'green' as color,
+    'no' as is_round,
+    0.43 as price,
+    2.4 as price_per_pound,
+    0.18 as weight
+
+    union all
+
+    select
+    'lime' as fruit_type,
+    'green' as color,
+    'no' as is_round,
+    0.41 as price,
+    2.4 as price_per_pound,
+    0.17 as weight
+
+    union all
+
+    select
+    'apple' as fruit_type,
+    'green' as color,
+    'yes' as is_round,
+    0.46 as price,
+    1.15 as price_per_pound,
+    0.4 as weight
+
+    union all
+
+    select
+    'orange' as fruit_type,
+    'orange' as color,
+    'yes' as is_round,
+    0.73 as price,
+    1.45 as price_per_pound,
+    0.5 as weight
+
+    union all
+
+    select
+    'orange' as fruit_type,
+    'orange' as color,
+    'yes' as is_round,
+    0.65 as price,
+    1.45 as price_per_pound,
+    0.45 as weight
+
+    union all
+
+    select
+    'apple' as fruit_type,
+    'red' as color,
+    'yes' as is_round,
+    0.75 as price,
+    1.25 as price_per_pound,
+    0.6 as weight
+
+    union all
+
+    select
+    'apple' as fruit_type,
+    'red' as color,
+    'yes' as is_round,
+    0.69 as price,
+    1.25 as price_per_pound,
+    0.55 as weight
+
+    union all
+
+    select
+    'banana' as fruit_type,
+    'yellow' as color,
+    'no' as is_round,
+    0.53 as price,
+    0.75 as price_per_pound,
+    0.7 as weight
+
+    union all
+
+    select
+    'lemon' as fruit_type,
+    'yellow' as color,
+    'no' as is_round,
+    0.5 as price,
+    2.25 as price_per_pound,
+    0.22 as weight
+
+    union all
+
+    select
+    'lemon' as fruit_type,
+    'yellow' as color,
+    'no' as is_round,
+    0.45 as price,
+    2.25 as price_per_pound,
+    0.2 as weight
+
+    union all
+
+    select
+    'banana' as fruit_type,
+    'yellow' as color,
+    'no' as is_round,
+    0.56 as price,
+    0.75 as price_per_pound,
+    0.75 as weight
+
+    union all
+
+    select
+    'lemon' as fruit_type,
+    'yellow' as color,
+    'no' as is_round,
+    0.43 as price,
+    2.25 as price_per_pound,
+    0.19
+    ;;
+  }
 
   dimension: fruit_type {
     type: string
@@ -390,7 +509,7 @@ view: fruit_basket {
     sql: ${price} ;;
   }
 
-  measure: average_price_per_pound{
+  measure: average_price_per_pound {
     type: average
     value_format_name: usd
     sql: ${price_per_pound} ;;
