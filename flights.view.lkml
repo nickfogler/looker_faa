@@ -133,9 +133,11 @@ measure:   testmeasure102{
 
   dimension: categories {
     type:  string
-    sql:  case(when ${distance} between 0 and 499 then 'Short flight.'
+    sql:  case
+              when ${distance} between 0 and 499 then 'Short flight.'
               when ${distance} between 500 and 4999 then 'Medium flight'
-              when ${distance} >= 5000 then 'Long Flight' ;;
+              when ${distance} >= 5000 then 'Long Flight'
+              end;;
 
 
   }

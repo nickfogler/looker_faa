@@ -12,7 +12,6 @@ view: aircraft_flight_facts {
          ;;
   }
 
-
   dimension: tail_num {
     primary_key: yes
     hidden: yes
