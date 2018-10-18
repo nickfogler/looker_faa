@@ -159,6 +159,7 @@ view: fruit_basket {
 
   measure: count {
     type: count
+    label: "Foo"
   }
 
   measure: average_weight {
