@@ -145,6 +145,7 @@ view: fruit_basket {
   dimension: price_per_pound {
     type: number
     sql: ${TABLE}.price_per_pound ;;
+    value_format_name: usd
   }
 
   dimension: weight {
@@ -155,6 +156,7 @@ view: fruit_basket {
   dimension: price {
     type: number
     sql: ${TABLE}.price ;;
+    value_format_name: usd
   }
 
   measure: count {
