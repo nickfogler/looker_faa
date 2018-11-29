@@ -3,7 +3,6 @@ connection: "partnerred_flightstats"
 include: "*.view.lkml"         # include all views in this project
 # include: "*.dashboard.lookml"  # include all dashboards in this project
 
-
 explore: fruit_basket {}
 view: fruit_basket {
   derived_table: {
@@ -11,9 +10,9 @@ view: fruit_basket {
           'lime' as fruit_type,
           'green' as color,
           'no' as is_round,
-          0.43 as price,
-          2.4 as price_per_pound,
-          0.18 as weight
+          round(cast(0.43 as real),2) as price,
+          round(cast(2.4  as real),2) as price_per_pound,
+          round(cast(0.18  as real),2) as weight
 
           union all
 
@@ -21,9 +20,9 @@ view: fruit_basket {
           'lime' as fruit_type,
           'green' as color,
           'no' as is_round,
-          0.41 as price,
-          2.4 as price_per_pound,
-          0.17 as weight
+          round(cast(0.41  as real),2) as price,
+          round(cast(2.4  as real),2) as price_per_pound,
+          round(cast(0.17  as real),2) as weight
 
           union all
 
@@ -31,9 +30,9 @@ view: fruit_basket {
           'apple' as fruit_type,
           'green' as color,
           'yes' as is_round,
-          0.46 as price,
-          1.15 as price_per_pound,
-          0.4 as weight
+          round(cast(0.46  as real),2) as price,
+          round(cast(1.15  as real),2) as price_per_pound,
+          round(cast(0.4  as real),2) as weight
 
           union all
 
@@ -41,9 +40,9 @@ view: fruit_basket {
           'orange' as fruit_type,
           'orange' as color,
           'yes' as is_round,
-          0.73 as price,
-          1.45 as price_per_pound,
-          0.5 as weight
+          round(cast(0.73  as real),2) as price,
+          round(cast(1.45  as real),2) as price_per_pound,
+          round(cast(0.5  as real),2) as weight
 
           union all
 
@@ -51,9 +50,9 @@ view: fruit_basket {
           'orange' as fruit_type,
           'orange' as color,
           'yes' as is_round,
-          0.65 as price,
-          1.45 as price_per_pound,
-          0.45 as weight
+          round(cast(0.65  as real),2) as price,
+          round(cast(1.45  as real),2) as price_per_pound,
+          round(cast(0.45  as real),2) as weight
 
           union all
 
@@ -61,9 +60,9 @@ view: fruit_basket {
           'apple' as fruit_type,
           'red' as color,
           'yes' as is_round,
-          0.75 as price,
-          1.25 as price_per_pound,
-          0.6 as weight
+          round(cast(0.75  as real),2) as price,
+          round(cast(1.25  as real),2) as price_per_pound,
+          round(cast(0.6  as real),2) as weight
 
           union all
 
@@ -71,9 +70,9 @@ view: fruit_basket {
           'apple' as fruit_type,
           'red' as color,
           'yes' as is_round,
-          0.69 as price,
-          1.25 as price_per_pound,
-          0.55 as weight
+          round(cast(0.69  as real),2) as price,
+          round(cast(1.25  as real),2) as price_per_pound,
+          round(cast(0.55  as real),2) as weight
 
           union all
 
@@ -81,9 +80,9 @@ view: fruit_basket {
           'banana' as fruit_type,
           'yellow' as color,
           'no' as is_round,
-          0.53 as price,
-          0.75 as price_per_pound,
-          0.7 as weight
+          round(cast(0.53  as real),2) as price,
+          round(cast(0.75  as real),2) as price_per_pound,
+          round(cast(0.7  as real),2) as weight
 
           union all
 
@@ -91,9 +90,9 @@ view: fruit_basket {
           'lemon' as fruit_type,
           'yellow' as color,
           'no' as is_round,
-          0.5 as price,
-          2.25 as price_per_pound,
-          0.22 as weight
+          round(cast(0.5  as real),2) as price,
+          round(cast(2.25  as real),2) as price_per_pound,
+          round(cast(0.22  as real),2) as weight
 
           union all
 
@@ -101,9 +100,9 @@ view: fruit_basket {
           'lemon' as fruit_type,
           'yellow' as color,
           'no' as is_round,
-          0.45 as price,
-          2.25 as price_per_pound,
-          0.2 as weight
+          round(cast(0.45  as real),2) as price,
+          round(cast(2.25  as real),2) as price_per_pound,
+          round(cast(0.2  as real),2) as weight
 
           union all
 
@@ -111,9 +110,9 @@ view: fruit_basket {
           'banana' as fruit_type,
           'yellow' as color,
           'no' as is_round,
-          0.56 as price,
-          0.75 as price_per_pound,
-          0.75 as weight
+          round(cast(0.56  as real),2) as price,
+          round(cast(0.75  as real),2) as price_per_pound,
+          round(cast(0.75  as real),2) as weight
 
           union all
 
@@ -121,9 +120,10 @@ view: fruit_basket {
           'lemon' as fruit_type,
           'yellow' as color,
           'no' as is_round,
-          0.43 as price,
-          2.25 as price_per_pound,
-          0.19
+          round(cast(0.43  as real),2) as price,
+          round(cast(2.25  as real),2) as price_per_pound,
+          round(cast(0.19  as real),2) as weight
+
           ;;
   }
 
@@ -145,6 +145,7 @@ view: fruit_basket {
   dimension: price_per_pound {
     type: number
     sql: ${TABLE}.price_per_pound ;;
+    value_format_name: usd
   }
 
   dimension: weight {
@@ -155,6 +156,7 @@ view: fruit_basket {
   dimension: price {
     type: number
     sql: ${TABLE}.price ;;
+    value_format_name: usd
   }
 
   measure: count {

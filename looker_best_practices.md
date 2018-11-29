@@ -5,7 +5,7 @@
   * Name measures with aggregate function or common terms. total_[FIELD] for sum, count_[FIELD], avg_[FIELD], etc.
   * Name ratios descriptively. For example, “Orders Per Purchasing Customers” is clearer than “Orders Percent.”
   * Name yesno fields clearly: “Is Returned” instead of “Returned”
-* Avoid the the words date or time in a dimension group because Looker appends each timeframe to the end of the dimension name: created_date becomes created_date_date,created_date_month, etc. Simply use created which becomes created_date, created_month, etc.
+* Avoid the words date or time in a dimension group because Looker appends each timeframe to the end of the dimension name: created_date becomes created_date_date,created_date_month, etc. Simply use created which becomes created_date, created_month, etc.
 [More on timeframes](https://discourse.looker.com/t/timeframes-and-dimension-groups-in-looker/247)
 
 ### Project Organization
