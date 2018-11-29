@@ -66,6 +66,7 @@ view: aircraft {
   dimension: city {
     type: string
     sql: ${TABLE}.city ;;
+    drill_fields: [cert_issue_date,country]
   }
 
   dimension: country {

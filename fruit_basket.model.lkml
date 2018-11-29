@@ -173,6 +173,17 @@ view: fruit_basket {
     value_format_name: usd
     sql: ${price} ;;
   }
+#
+#   measure: average_price_green {
+#     label: "Average Price of Green Fruit"
+#     type: average
+#     value_format_name: usd
+#     sql: ${price} ;;
+#     filters: {
+#       field: color
+#       value: "green"
+#     }
+#   }
 
   measure: total_weight {
     type: sum
