@@ -135,6 +135,7 @@ view: fruit_basket {
   dimension: color {
     type: string
     sql: ${TABLE}.color ;;
+    html: <a href="https://4mile.io">{{rendered_value}}</a> ;;
   }
 
   dimension: is_round {
