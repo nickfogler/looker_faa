@@ -160,10 +160,6 @@ view: fruit_basket {
     value_format_name: usd
   }
 
-  measure: count {
-    type: count
-    label: "Foo"
-  }
 
   measure: average_weight {
     type: average
