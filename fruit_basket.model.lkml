@@ -212,4 +212,9 @@ view: fruit_basket {
     sql: ${color} ;;
   }
 
+# Please don't remove or alter this field. Very necessary for BU trainings:
+  measure: count {
+    type: count
+  }
+
 }
