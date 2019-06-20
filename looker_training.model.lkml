@@ -4,7 +4,7 @@ include: "*.view"
 
 
 # include all dashboards in this project
-include: "*.dashboard"
+# include: "*.dashboard"
 
 explore: hr_looker_training_set {
   label: "HR Looker Training Set"
@@ -279,6 +279,8 @@ view: ecomm_looker_training_set {
     sql: ${TABLE}.year_joined ;;
   }
 
+
+
   dimension: years_a_customer {
     type: number
     sql: coalesce(cast(extract(year from current_date) -  ${TABLE}.year_joined as decimal),0) ;;
@@ -331,6 +333,9 @@ view: ecomm_looker_training_set {
 explore: fruit_basket {}
 view: fruit_basket {
   derived_table: {
+    sql_trigger_value: select 1 ;;
+    distribution: "fruit_type"
+    sortkeys: ["fruit_type"]
     sql: select
     'lime' as fruit_type,
     'green' as color,
