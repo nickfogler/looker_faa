@@ -27,6 +27,11 @@ view: airports {
     sql: ${TABLE}.city ;;
   }
 
+  dimension: now {
+    type: string
+    sql: date_part('hour',timeofday()::timestamp) ;;
+  }
+
   dimension: cntl_twr {
     type: string
     sql: ${TABLE}.cntl_twr ;;
@@ -98,6 +103,7 @@ view: airports {
   measure: count {
     type: count
     drill_fields: [id, full_name]
+    html: {{rendered_value}} ;;
   }
 
   measure: min_elevation {

@@ -7,6 +7,12 @@ view: carriers {
     sql: ${TABLE}.code ;;
   }
 
+  dimension: code_with_html {
+    type: string
+    sql: ${TABLE}.code ;;
+    html: <a href="www.4mile.io">{{value}}</a> ;;
+  }
+
   dimension: name {
     type: string
     sql: ${TABLE}.name ;;
