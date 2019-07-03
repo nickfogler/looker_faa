@@ -1,11 +1,11 @@
 connection: "partnerred_flightstats"
-# include all views in this project
+
 include: "*.view"
-# include all dashboards in this project
 # include: "*.dashboard"
 
 explore: airports {}
 
+explore: sample_email_list {}
 
 explore: flights {
   description: "Start here for information about flights!"
