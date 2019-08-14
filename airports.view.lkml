@@ -101,9 +101,10 @@ view: airports {
   }
 
   measure: count {
-    type: count
+    type: count_distinct
     drill_fields: [id, full_name]
-    html: {{rendered_value}} ;;
+#     html: {{rendered_value}} ;;
+    sql: ${id} ;;
   }
 
   measure: min_elevation {
@@ -113,12 +114,18 @@ view: airports {
 
   measure: max_elevation {
     type: max
-    sql: ${elevation} ;;
+    sql: NULLIF(${elevation},0) ;;
   }
 
   measure: average_elevation {
     type: average
-    sql: ${elevation} ;;
+    sql: NULLIF(${elevation},0) ;;
+  }
+
+  measure: price_gap {
+    type: number
+    sql: ((${count}-${average_elevation})*${max_elevation})/(${count}*${max_elevation}) ;;
+    value_format_name: percent_1
   }
 
   measure: with_control_tower_count {
