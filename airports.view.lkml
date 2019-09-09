@@ -122,6 +122,16 @@ view: airports {
     sql: NULLIF(${elevation},0) ;;
   }
 
+  measure: elevation_range {
+    type: number
+    sql: ${max_elevation}-${min_elevation} ;;
+  }
+
+  measure: total_elevation {
+    type: sum
+    sql: NULLIF(${elevation},0) ;;
+  }
+
   measure: price_gap {
     type: number
     sql: ((${count}-${average_elevation})*${max_elevation})/(${count}*${max_elevation}) ;;
