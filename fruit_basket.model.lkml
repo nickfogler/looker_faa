@@ -164,7 +164,8 @@ view: fruit_basket {
 
   measure: average_weight {
     type: average
-    value_format_name: decimal_2
+    tags: ["doesitwork","imnotsure"]
+    value_format_name: decimal_1
     sql: ${weight} ;;
   }
 
