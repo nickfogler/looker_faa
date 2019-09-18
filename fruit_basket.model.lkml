@@ -141,6 +141,7 @@ view: fruit_basket {
 
   dimension: is_round {
     type: string
+    tags: ["mp_user_attribute"]
     sql: ${TABLE}.is_round ;;
   }
 
@@ -157,6 +158,7 @@ view: fruit_basket {
 
   dimension: price {
     type: number
+    tags: ["mp_other4"]
     sql: ${TABLE}.price ;;
     value_format_name: usd
   }
@@ -164,7 +166,7 @@ view: fruit_basket {
 
   measure: average_weight {
     type: average
-    tags: ["doesitwork","imnotsure"]
+    tags: ["mp_customer_id"]
     value_format_name: decimal_1
     sql: ${weight} ;;
   }
