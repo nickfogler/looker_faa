@@ -25,6 +25,7 @@ view: airports {
   dimension: city {
     type: string
     sql: ${TABLE}.city ;;
+    label: "jjs city"
   }
 
   dimension: now {

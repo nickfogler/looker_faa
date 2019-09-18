@@ -134,6 +134,7 @@ view: fruit_basket {
 
   dimension: color {
     type: string
+    tags: ["mp_microsoft"]
     sql: ${TABLE}.color ;;
     html: <a href="https://4mile.io">{{rendered_value}}</a> ;;
   }
