@@ -7,6 +7,7 @@ view: aircraft {
     sql: ${TABLE}.tail_num ;;
   }
 
+
   dimension: address1 {
     type: string
     sql: ${TABLE}.address1 ;;
