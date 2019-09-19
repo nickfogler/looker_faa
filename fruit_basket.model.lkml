@@ -134,14 +134,14 @@ view: fruit_basket {
 
   dimension: color {
     type: string
-    tags: []
+    tags: ["mp_device_info"]
     sql: ${TABLE}.color ;;
     html: <a href="https://4mile.io">{{rendered_value}}</a> ;;
   }
 
   dimension: is_round {
     type: string
-    tags: ["mp_timestamp_unixtime_ms"]
+    tags: ["mp_device_info"]
     sql: ${TABLE}.is_round ;;
   }
 
