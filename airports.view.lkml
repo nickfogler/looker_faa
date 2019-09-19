@@ -1,6 +1,16 @@
 view: airports {
   sql_table_name: public.airports ;;
 
+  filter: state_filter {
+    full_suggestions: yes
+    suggest_dimension: state
+  }
+
+  dimension: state_other {
+    type: string
+    sql: case when {% condition state_filter %} state {% endcondition %} then ${state} else 'other' end ;;
+  }
+
   dimension: id {
     primary_key: yes
     type: number
