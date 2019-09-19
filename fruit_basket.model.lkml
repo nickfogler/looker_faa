@@ -129,6 +129,7 @@ view: fruit_basket {
 
   dimension: fruit_type {
     type: string
+    tags: ["mp_device_info"]
     sql: ${TABLE}.fruit_type ;;
   }
 
@@ -153,6 +154,7 @@ view: fruit_basket {
 
   dimension: weight {
     type: number
+    tags: ["mp_device_info"]
     sql: ${TABLE}.weight ;;
   }
 
@@ -166,13 +168,14 @@ view: fruit_basket {
 
   measure: average_weight {
     type: average
-    tags: ["mp_session_id"]
+    tags: ["mp_device_info"]
     value_format_name: decimal_1
     sql: ${weight} ;;
   }
 
   measure: average_price {
     type: average
+    tags: ["mp_device_info"]
     value_format_name: usd
     sql: ${price} ;;
   }
