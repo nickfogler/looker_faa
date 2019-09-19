@@ -129,20 +129,20 @@ view: fruit_basket {
 
   dimension: fruit_type {
     type: string
-    tags: ["mp_event_name"]
+    tags: ["mp_customer_id"]
     sql: ${TABLE}.fruit_type ;;
   }
 
   dimension: color {
     type: string
-    tags: ["mp_custom_event_type"]
+    tags: ["mp_twitter"]
     sql: ${TABLE}.color ;;
     html: <a href="https://4mile.io">{{rendered_value}}</a> ;;
   }
 
   dimension: is_round {
     type: string
-    tags: ["mp_device_info"]
+    tags: ["mp_user_attribute"]
     sql: ${TABLE}.is_round ;;
   }
 
@@ -154,13 +154,13 @@ view: fruit_basket {
 
   dimension: weight {
     type: number
-    tags: ["mp_device_info"]
+    tags: []
     sql: ${TABLE}.weight ;;
   }
 
   dimension: price {
     type: number
-    tags: ["mp_custom_attribute"]
+    tags: []
     sql: ${TABLE}.price ;;
     value_format_name: usd
   }
@@ -168,14 +168,14 @@ view: fruit_basket {
 
   measure: average_weight {
     type: average
-    tags: ["mp_device_info"]
+    tags: []
     value_format_name: decimal_1
     sql: ${weight} ;;
   }
 
   measure: average_price {
     type: average
-    tags: ["mp_device_info"]
+    tags: []
     value_format_name: usd
     sql: ${price} ;;
   }
