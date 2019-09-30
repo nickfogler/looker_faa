@@ -24,9 +24,7 @@ access_grant: analytics_department {
 
 explore: dealerware_sample {}
 
-explore: airports {
-  required_access_grants: [ four_mile_company, analytics_department ]
-}
+explore: airports {}
 
 # explore: sample_email_list {}
 
