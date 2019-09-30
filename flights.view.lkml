@@ -38,14 +38,11 @@ view: flights {
   }
 
   measure: count {
-    type: count
-    drill_fields: [detail*]
+    group_label: "Flight Count"
+    type: count_distinct
+    sql: ${id} ;;
   }
 
-  measure: count_distance {
-    type: count_distinct
-    sql: ${distance} ;;
-  }
 measure: standard_deviation{
   type: average
   sql:  round(sqrt(mean(power(${distance} - mean(${distance}), 2))),2) ;;
@@ -68,6 +65,14 @@ measure:   testmeasure102{
     sql: ${distance} > 1000 ;;
   }
 
+  measure: count_distance {
+    # hidden: yes
+    type: count_distinct
+    sql: ${distance};;
+    value_format_name: usd_0
+  }
+
+
   measure: total_long_flight_distance {
     type: sum
     sql: ${distance} ;;
@@ -89,7 +94,7 @@ measure:   testmeasure102{
 
   measure: percentage_long_flight_distance {
     type: number
-    value_format: "0.0%"
+    # value_format: '[is_long_flight._value == 'Yes'
     sql: 1.0*${total_long_flight_distance}/NULLIF(${total_distance}, 0) ;;
   }
 
@@ -111,8 +116,64 @@ measure:   testmeasure102{
 
   dimension_group: depart {
     type: time
-    timeframes: [time, date, week, month, year, raw]
+    timeframes: [time, date, week, month, month_name,quarter, year, raw]
     sql: ${TABLE}.dep_time ;;
+  }
+
+  parameter: year_filter {
+    label: "Current Year"
+  }
+
+  dimension: current_year {
+    hidden: yes
+    type: number
+    sql:  {% if flights.year_filter._is_filtered %}
+                {{ flights.year_filter._parameter_value }}
+          {% else %}
+              1=1
+          {% endif %} ;;
+  }
+
+  dimension:  is_current_year {
+    hidden: yes
+    type:  yesno
+    sql: ${current_year} = ${depart_year};;
+  }
+
+  dimension: prior_year {
+    hidden: yes
+    type: number
+    sql:  {% if flights.year_filter._is_filtered %}
+              {{ flights.year_filter._parameter_value }}-1
+          {% else %}
+             1=1
+          {% endif %};;
+  }
+#
+  dimension:  is_prior_year {
+    hidden: yes
+    type:  yesno
+    sql: ${prior_year} = ${depart_year};;
+  }
+
+  measure: current_year_count {
+    group_label: "Flight Count"
+    type: count_distinct
+    sql: ${id};;
+    filters: {
+      field: is_current_year
+      value: "Yes"
+    }
+  }
+
+    measure: prior_year_count {
+      group_label: "Flight Count"
+      type: count_distinct
+      sql: ${id};;
+      filters: {
+        field: is_prior_year
+        value: "Yes"
+      }
   }
 
 ########################################################################################

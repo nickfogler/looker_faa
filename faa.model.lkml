@@ -76,4 +76,4 @@ explore: flights { # Second portion of below clause dependent on internal compan
     relationship: many_to_one
     fields: [full_name, city, state, code]
   }
-}
+  }
