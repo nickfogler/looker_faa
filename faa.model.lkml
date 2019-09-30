@@ -5,7 +5,7 @@ include: "/**/*.view"
 ## DATAGROUPS ##
 
 datagroup: default_datagroup {
-  sql_trigger: SELECT CURRENT_DATE() ;;
+  sql_trigger: SELECT CURRENT_DATE ;;
   max_cache_age: "24 hours"
 }
 
