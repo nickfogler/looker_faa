@@ -29,7 +29,6 @@ explore: airports {}
 # explore: sample_email_list {}
 
 explore: flights { # Second portion of below clause dependent on internal company users having company_id user attribute set to 0.
-  sql_always_where: (${aircraft.tail_num} = {{ _user_attributes['company_id'] }}) OR ({{ _user_attributes['company_id'] }} = 0) ;;
 #   access_filter: {
 #     field: aircraft_flight_facts.tail_num
 #     user_attribute: company_id
