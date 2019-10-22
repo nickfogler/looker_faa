@@ -52,7 +52,7 @@ view: flights {
 
   measure: max_distance {
     group_label: "Flight Distance KPIs"
-    type: min
+    type: max
     sql: ${distance} ;;
     drill_fields: [detail*]
   }
