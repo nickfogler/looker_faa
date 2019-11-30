@@ -1,6 +1,6 @@
 connection: "partnerred_flightstats"
 include: "/**/*.view"
-# include: "*.dashboard"
+include: "*.dashboard"
 
 ## DATAGROUPS ##
 
