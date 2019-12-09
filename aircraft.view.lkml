@@ -28,7 +28,6 @@ view: aircraft {
 
   dimension: aircraft_engine_code {
     type: string
-    tags: ["mp_customer_id"]
     sql: ${TABLE}.aircraft_engine_code ;;
   }
 
