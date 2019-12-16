@@ -4,6 +4,7 @@ include: "*.dashboard"
 
 ## DATAGROUPS ##
 
+#  test comment - Spencer Taylor sudoing as random user
 datagroup: default_datagroup {
   sql_trigger: SELECT CURRENT_DATE ;;
   max_cache_age: "24 hours"
