@@ -192,4 +192,11 @@ view: dealerware_sample {
     type: number
     sql: ${TABLE}."DEALERWARE_OEM_METADATA_RUN_TIME" ;;
   }
+
+  dimension: run_time {
+    type: date
+    datatype: epoch
+    sql: ${TABLE}."DEALERWARE_OEM_METADATA_RUN_TIME" ;;
+  }
+
 }
