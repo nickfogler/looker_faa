@@ -27,6 +27,10 @@ explore: dealerware_sample {}
 
 explore: airports {}
 
+explore: aircraft {
+  fields: [ALL_FIELDS*, -aircraft.total_miles_flown]
+}
+
 # explore: sample_email_list {}
 
 explore: flights { # Second portion of below clause dependent on internal company users having company_id user attribute set to 0.
@@ -74,4 +78,9 @@ explore: flights { # Second portion of below clause dependent on internal compan
     relationship: many_to_one
     fields: [full_name, city, state, code]
   }
+  }
+
+  explore: flights_california {
+    from: flights
+    sql_always_where: ${origin} = 'CA' ;;
   }

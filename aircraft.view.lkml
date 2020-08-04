@@ -135,6 +135,16 @@ view: aircraft {
     sql: ${TABLE}.zip ;;
   }
 
+  measure: count_states {
+    type: number
+    sql: ${state} ;;
+  }
+
+  measure: total_miles_flown {
+    type: sum
+    sql: ${flights.distance} ;;
+  }
+
   measure: count {
     type: count
     drill_fields: [name]
