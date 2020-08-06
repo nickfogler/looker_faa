@@ -16,16 +16,55 @@ view: flights {
   }
 
   measure: total_distance {
+    group_label: "Flight Distance KPIs"
     type: sum
     sql: ${distance} ;;
   }
 
+  measure: min_distance {
+    group_label: "Flight Distance KPIs"
+    type: min
+    sql: ${distance} ;;
+    drill_fields: [detail*]
+  }
+
+  measure: 25th_percentile_distance {
+    group_label: "Flight Distance KPIs"
+    type: percentile
+    percentile: 25
+    sql: ${distance} ;;
+    drill_fields: [detail*]
+  }
+
+  measure: median_distance {
+    group_label: "Flight Distance KPIs"
+    type: median
+    sql: ${distance} ;;
+  }
+
+  measure: 75th_percentile_distance {
+    group_label: "Flight Distance KPIs"
+    type: percentile
+    percentile: 75
+    sql: ${distance} ;;
+    drill_fields: [detail*]
+  }
+
+  measure: max_distance {
+    group_label: "Flight Distance KPIs"
+    type: max
+    sql: ${distance} ;;
+    drill_fields: [detail*]
+  }
+
   measure: average_distance {
+    group_label: "Flight Distance KPIs"
     type: average
     sql: ${distance} ;;
   }
 
   measure: total_distance_thresh {
+    group_label: "Flight Distance KPIs"
     type:  sum
     sql:  sum(${distance}) where ${distance} > 1000;;
   }
@@ -43,15 +82,15 @@ view: flights {
     sql: ${id} ;;
   }
 
-measure: standard_deviation{
-  type: average
-  sql:  round(sqrt(mean(power(${distance} - mean(${distance}), 2))),2) ;;
-}
-
-measure:   testmeasure102{
-  type: number
-  sql: if(abs(${distance} - mean(${distance})) >  ${standard_deviation} * 3, "Yes", "No")  ;;
+  measure: standard_deviation{
+    type: average
+    sql:  round(sqrt(mean(power(${distance} - mean(${distance}), 2))),2) ;;
   }
+
+  measure:   testmeasure102{
+    type: number
+    sql: if(abs(${distance} - mean(${distance})) >  ${standard_deviation} * 3, "Yes", "No")  ;;
+    }
 
   dimension: distance_tiered {
     type: tier

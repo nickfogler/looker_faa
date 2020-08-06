@@ -7,6 +7,7 @@ view: aircraft {
     sql: ${TABLE}.tail_num ;;
   }
 
+
   dimension: address1 {
     type: string
     sql: ${TABLE}.address1 ;;
@@ -115,6 +116,7 @@ view: aircraft {
 
   dimension: state {
     type: string
+    map_layer_name: us_states
     sql: ${TABLE}.state ;;
   }
 

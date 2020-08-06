@@ -1,13 +1,39 @@
 connection: "partnerred_flightstats"
+include: "/**/*.view"
+include: "*.dashboard"
 
-include: "*.view"
-# include: "*.dashboard"
+## DATAGROUPS ##
+
+#  test comment - Spencer Taylor sudoing as random user
+datagroup: default_datagroup {
+  sql_trigger: SELECT CURRENT_DATE ;;
+  max_cache_age: "24 hours"
+}
+
+persist_with: default_datagroup
+
+access_grant: four_mile_company {
+  user_attribute: company_id
+  allowed_values: [ "4Mile" ]
+}
+access_grant: analytics_department {
+  user_attribute: department_id
+  allowed_values: [ "Analytics" ]
+}
+
+## EXPLORES ##
+
+explore: dealerware_sample {}
 
 explore: airports {}
 
-explore: sample_email_list {}
+# explore: sample_email_list {}
 
-explore: flights {
+explore: flights { # Second portion of below clause dependent on internal company users having company_id user attribute set to 0.
+#   access_filter: {
+#     field: aircraft_flight_facts.tail_num
+#     user_attribute: company_id
+#   }
   description: "Start here for information about flights!"
   join: carriers {
     type: left_outer
@@ -29,7 +55,7 @@ explore: flights {
   }
 
   join: aircraft_models {
-    sql_on: ${aircraft.aircraft_model_code} = ${aircraft_models.aircraft_model_code} ;;
+    sql_on: aircraft. = ${aircraft_models.aircraft_model_code} ;;
     relationship: many_to_one
   }
 

@@ -1,6 +1,16 @@
 view: airports {
   sql_table_name: public.airports ;;
 
+  filter: state_filter {
+    full_suggestions: yes
+    suggest_dimension: state
+  }
+
+  dimension: state_other {
+    type: string
+    sql: case when {% condition state_filter %} state {% endcondition %} then ${state} else 'other' end ;;
+  }
+
   dimension: id {
     primary_key: yes
     type: number
@@ -25,6 +35,7 @@ view: airports {
   dimension: city {
     type: string
     sql: ${TABLE}.city ;;
+    label: "jjs city"
   }
 
   dimension: now {
@@ -120,6 +131,16 @@ view: airports {
 
   measure: average_elevation {
     type: average
+    sql: NULLIF(${elevation},0) ;;
+  }
+
+  measure: elevation_range {
+    type: number
+    sql: ${max_elevation}-${min_elevation} ;;
+  }
+
+  measure: total_elevation {
+    type: sum
     sql: NULLIF(${elevation},0) ;;
   }
 
