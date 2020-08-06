@@ -148,10 +148,6 @@ view: flights {
     sql: extract(year from ${depart_date}) - ${aircraft.year_built} ;;
   }
 
-  dimension: origin_and_destination {
-    type: string
-    sql: ${aircraft_origin.full_name}  || ' to ' || ${aircraft_destination.full_name} ;;
-  }
 
   dimension_group: depart {
     type: time
