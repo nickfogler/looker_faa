@@ -255,7 +255,7 @@ view: flights {
   }
 
   dimension: tail_number_link {
-    sql: TRIM(${TABLE}.tail_number) ;; link: {
+    sql: TRIM(${TABLE}.tail_num) ;; link: {
       label: "Website"
       url: "http://www.google.com/search?q={{ value | encode_uri }}"
       icon_url: "http://www.google.com/s2/favicons?domain=www.{{ value | encode_uri
