@@ -269,7 +269,7 @@ view: flights {
   dimension: tail_number_drill {
     sql: ${TABLE}.tail_num ;; link: {
       label: "Drill Down to See Tail Number"
-      url: "/explore/faa_aircraft?fields=flights.tail_num&f[flights.tail_num]={{ _filters['flights.tail_num'] | url_encode }}"
+      url: "/explore/faa?fields=flights.tail_num&f[flights.tail_num]={{ _filters['flights.tail_num'] | url_encode }}"
       icon_url: "https://looker.com/favicon.ico" }
   }
 
