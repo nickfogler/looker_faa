@@ -254,6 +254,12 @@ view: flights {
     sql: ${TABLE}.cancelled ;;
   }
 
+  dimension: tail_number_link {
+    link: {
+      label:"Website Link" url: "http://www.google.com"
+      icon_url: "http://www.google.com/icon.png"
+    } }
+
   dimension: carrier {
     view_label: "Flights Details"
     type: string
