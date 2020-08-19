@@ -266,6 +266,13 @@ view: flights {
       url: "/dashboards/694?Brand={{ value | encode_uri }}" icon_url: "http://www.looker.com/favicon.ico"
     } }
 
+  dimension: tail_number_drill {
+    sql: ${TABLE}.tail_num ;; link: {
+      label: "Drill Down to See Tail Number"
+      url: "/explore/events_ecommerce/faa_aircraft?fields=flights.tail_num&f[flights.tail_num]={{ _filters['flights.tail_num'] | url_encode }}"
+      icon_url: "https://looker.com/favicon.ico" }
+  }
+
   dimension: carrier {
     view_label: "Flights Details"
     type: string
