@@ -150,7 +150,7 @@ view: flights {
 
   dimension: origin_and_destination {
     type: string
-    sql: ${aircraft_origin.full_name}  || ' to ' || ${aircraft_destination.full_name} ;;
+    sql: ${TABLE}.origin  || ' to ' || ${TABLE}.destination ;;
   }
 
   dimension_group: depart {

@@ -63,24 +63,4 @@ explore: flights { # Second portion of below clause dependent on internal compan
     relationship: many_to_one
   }
 
-  join: aircraft_origin {
-    from: airports
-    type: left_outer
-    sql_on: ${flights.origin} = ${aircraft_origin.code} ;;
-    relationship: many_to_one
-    fields: [full_name, city, state, code]
-  }
-
-  join: aircraft_destination {
-    from: airports
-    type: left_outer
-    sql_on: ${flights.destination} = ${aircraft_destination.code} ;;
-    relationship: many_to_one
-    fields: [full_name, city, state, code]
-  }
-  }
-
-  explore: flights_california {
-    from: flights
-    sql_always_where: ${origin} = 'CA' ;;
   }

@@ -18,6 +18,11 @@ view: carriers {
     sql: ${TABLE}.name ;;
   }
 
+  dimension: nameB {
+    type: string
+    sql: ${TABLE}.name ;;
+  }
+
   dimension: nickname {
     type: string
     sql: ${TABLE}.nickname ;;
