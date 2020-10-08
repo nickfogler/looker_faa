@@ -143,15 +143,15 @@ view: flights {
     sql: 1.0*${count_long_flight}/NULLIF(${count}, 0) ;;
   }
 
-  dimension: aircraft_years_in_service {
-    type: number
-    sql: extract(year from ${depart_date}) - ${aircraft.year_built} ;;
-  }
+  # dimension: aircraft_years_in_service {
+  #   type: number
+  #   sql: extract(year from ${depart_date}) - ${aircraft.year_built} ;;
+  # }
 
-  dimension: origin_and_destination {
-    type: string
-    sql: ${aircraft_origin.full_name}  || ' to ' || ${aircraft_destination.full_name} ;;
-  }
+  # dimension: origin_and_destination {
+  #   type: string
+  #   sql: ${aircraft_origin.full_name}  || ' to ' || ${aircraft_destination.full_name} ;;
+  # }
 
   dimension_group: depart {
     type: time
@@ -166,8 +166,8 @@ view: flights {
   dimension: current_year {
     hidden: yes
     type: number
-    sql:  {% if flights.year_filter._is_filtered %}
-                {{ flights.year_filter._parameter_value }}
+    sql:  {% if year_filter._is_filtered %}
+                {{ year_filter._parameter_value }}
           {% else %}
               1=1
           {% endif %} ;;
@@ -182,8 +182,8 @@ view: flights {
   dimension: prior_year {
     hidden: yes
     type: number
-    sql:  {% if flights.year_filter._is_filtered %}
-              {{ flights.year_filter._parameter_value }}-1
+    sql:  {% if year_filter._is_filtered %}
+              {{ year_filter._parameter_value }}-1
           {% else %}
              1=1
           {% endif %};;
