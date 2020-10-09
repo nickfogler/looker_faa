@@ -155,7 +155,7 @@ view: flights {
 
   dimension_group: depart {
     type: time
-    timeframes: [time, date, week, month, month_name,quarter, year, raw]
+    timeframes: [time, date, week,week_of_year, month, month_name,quarter, year, raw]
     sql: ${TABLE}.dep_time ;;
   }
 
@@ -395,5 +395,50 @@ view: flights {
     WHEN {% parameter timeframe_picker %} = 'Week' THEN ${depart_week}
     WHEN{% parameter timeframe_picker %} = 'Month' THEN ${depart_month}
     END ;;
+  }
+
+  dimension: wtd_only {
+    group_label: "To-Date Filters"
+    label: "WTD"
+    view_label: "_PoP"
+    type: yesno
+    sql:  (EXTRACT(DOW FROM ${depart_raw}) < EXTRACT(DOW FROM GETDATE())
+                OR
+            (EXTRACT(DOW FROM ${depart_raw}) = EXTRACT(DOW FROM GETDATE()) AND
+            EXTRACT(HOUR FROM ${depart_raw}) < EXTRACT(HOUR FROM GETDATE()))
+                OR
+            (EXTRACT(DOW FROM ${depart_raw}) = EXTRACT(DOW FROM GETDATE()) AND
+            EXTRACT(HOUR FROM ${depart_raw}) <= EXTRACT(HOUR FROM GETDATE()) AND
+            EXTRACT(MINUTE FROM ${depart_raw}) < EXTRACT(MINUTE FROM GETDATE())))  ;;
+  }
+
+  dimension: mtd_only {
+    group_label: "To-Date Filters"
+    label: "MTD"
+    view_label: "_PoP"
+    type: yesno
+    sql:  (EXTRACT(DAY FROM ${depart_raw}) < EXTRACT(DAY FROM GETDATE())
+                OR
+            (EXTRACT(DAY FROM ${depart_raw}) = EXTRACT(DAY FROM GETDATE()) AND
+            EXTRACT(HOUR FROM ${depart_raw}) < EXTRACT(HOUR FROM GETDATE()))
+                OR
+            (EXTRACT(DAY FROM ${depart_raw}) = EXTRACT(DAY FROM GETDATE()) AND
+            EXTRACT(HOUR FROM ${depart_raw}) <= EXTRACT(HOUR FROM GETDATE()) AND
+            EXTRACT(MINUTE FROM ${depart_raw}) < EXTRACT(MINUTE FROM GETDATE())))  ;;
+  }
+
+  dimension: ytd_only {
+    group_label: "To-Date Filters"
+    label: "YTD"
+    view_label: "_PoP"
+    type: yesno
+    sql:  (EXTRACT(DOY FROM ${depart_raw}) < EXTRACT(DOY FROM GETDATE())
+                OR
+            (EXTRACT(DOY FROM ${depart_raw}) = EXTRACT(DOY FROM GETDATE()) AND
+            EXTRACT(HOUR FROM ${depart_raw}) < EXTRACT(HOUR FROM GETDATE()))
+                OR
+            (EXTRACT(DOY FROM ${depart_raw}) = EXTRACT(DOY FROM GETDATE()) AND
+            EXTRACT(HOUR FROM ${depart_raw}) <= EXTRACT(HOUR FROM GETDATE()) AND
+            EXTRACT(MINUTE FROM ${depart_raw}) < EXTRACT(MINUTE FROM GETDATE())))  ;;
   }
 }
