@@ -378,5 +378,22 @@ view: flights {
     fields: [distance, origin, destination, arrival_status]
   }
 
+## Zankhana Work ##
 
+  parameter: timeframe_picker {
+    label: "Date Granularity"
+    type: string
+    allowed_value: { value: "Week" }
+    allowed_value: { value: "Month" }
+    default_value: "Date"
+  }
+
+  dimension: dynamic_timeframe {
+    type: string
+    sql:
+    CASE
+    WHEN {% parameter timeframe_picker %} = 'Week' THEN ${depart_week}
+    WHEN{% parameter timeframe_picker %} = 'Month' THEN ${depart_month}
+    END ;;
+  }
 }
