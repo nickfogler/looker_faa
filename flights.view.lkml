@@ -441,4 +441,10 @@ view: flights {
             EXTRACT(HOUR FROM ${depart_raw}) <= EXTRACT(HOUR FROM GETDATE()) AND
             EXTRACT(MINUTE FROM ${depart_raw}) < EXTRACT(MINUTE FROM GETDATE())))  ;;
   }
+
+  dimension: phone {
+    type: number
+    sql: 8009995252 ;;
+    value_format: "(###)-###-####"
+  }
 }
