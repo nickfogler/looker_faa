@@ -3,7 +3,6 @@ include: "/**/*.view"
 include: "*.dashboard"
 
 ## DATAGROUPS ##
-#tes comment
 
 datagroup: default_datagroup {
   sql_trigger: SELECT CURRENT_DATE ;;
