@@ -4,6 +4,8 @@ include: "*.dashboard"
 
 ## DATAGROUPS ##
 
+# test comment
+
 datagroup: default_datagroup {
   sql_trigger: SELECT CURRENT_DATE ;;
   max_cache_age: "24 hours"
