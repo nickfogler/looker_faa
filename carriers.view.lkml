@@ -1,6 +1,9 @@
 view: carriers {
   sql_table_name: public.carriers ;;
 
+  # test comment
+
+
   dimension: code {
     primary_key: yes
     type: string
