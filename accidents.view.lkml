@@ -1,3 +1,4 @@
+#test
 view: accidents {
   sql_table_name: public.accidents ;;
 
