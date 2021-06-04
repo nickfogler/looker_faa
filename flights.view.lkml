@@ -8,6 +8,8 @@ view: flights {
     sql: ${TABLE}.id2 ;;
   }
 
+  #test comment
+
 ###################### TRAINING FIELDS ###########################
 
   dimension: distance {
@@ -15,7 +17,12 @@ view: flights {
     sql: ${TABLE}.distance ;;
   }
 
+  dimension: flight {}
+
+  dimension: Flight {}
+
   measure: total_distance {
+    required_access_grants: [test_separate_file]
     group_label: "Flight Distance KPIs"
     type: sum
     sql: ${distance} ;;
@@ -51,6 +58,7 @@ view: flights {
   }
 
   measure: max_distance {
+    required_access_grants: [can_see_financial_data]
     group_label: "Flight Distance KPIs"
     type: max
     sql: ${distance} ;;
@@ -82,7 +90,8 @@ view: flights {
     sql: ${id} ;;
   }
 
-  measure: standard_deviation{
+  measure: team_member_name{
+    required_access_grants: [sales_manager]
     type: average
     sql:  round(sqrt(mean(power(${distance} - mean(${distance}), 2))),2) ;;
   }

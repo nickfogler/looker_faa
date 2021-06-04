@@ -30,4 +30,8 @@ view: carriers {
     type: count
     drill_fields: [name, nickname]
   }
+
+  set: test_set {
+    fields: [code, code_with_html]
+  }
 }

@@ -1,6 +1,7 @@
 connection: "partnerred_flightstats"
 include: "/**/*.view"
 include: "*.dashboard"
+include: "access_grants.lkml"
 
 ## DATAGROUPS ##
 
@@ -26,7 +27,14 @@ access_grant: analytics_department {
 
 explore: dealerware_sample {}
 
-explore: airports {}
+explore: airports {
+  # label: "test separate file"
+  # required_access_grants: [test_separate_file]
+  access_filter: {
+    user_attribute: company_id
+    field: facility_type
+  }
+}
 
 explore: aircraft {
   fields: [ALL_FIELDS*, -aircraft.total_miles_flown]
@@ -47,6 +55,7 @@ explore: flights { # Second portion of below clause dependent on internal compan
   }
 
   join: aircraft {
+    required_access_grants: [sales_manager]
     type: left_outer
     sql_on: ${flights.tail_num} = ${aircraft.tail_num} ;;
     relationship: many_to_one

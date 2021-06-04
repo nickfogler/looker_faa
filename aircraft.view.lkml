@@ -6,7 +6,7 @@ view: aircraft {
     primary_key: yes
     sql: ${TABLE}.tail_num ;;
   }
-
+# test comment
 
   dimension: address1 {
     type: string
