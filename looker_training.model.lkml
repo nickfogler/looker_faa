@@ -10,6 +10,8 @@ explore: hr_looker_training_set {
   label: "HR Looker Training Set"
 }
 
+#test
+
 view: hr_looker_training_set {
   derived_table: {
     distribution_style: all
