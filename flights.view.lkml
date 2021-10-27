@@ -10,7 +10,7 @@ view: flights {
 
 ###################### TRAINING FIELDS ###########################
 
-  dimension: distance_blorg {
+  dimension: distance {
     type: number
     sql: ${TABLE}.distance ;;
   }
@@ -148,7 +148,7 @@ view: flights {
     sql: extract(year from ${depart_date}) - ${aircraft.year_built} ;;
   }
 
-  dimension: origin_and_destination {
+  dimension: aaa_origin_and_destination {
     type: string
     sql: ${aircraft_origin.full_name}  || ' to ' || ${aircraft_destination.full_name} ;;
   }
