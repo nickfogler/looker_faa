@@ -10,7 +10,7 @@ view: flights {
 
 ###################### TRAINING FIELDS ###########################
 
-  dimension: distance {
+  dimension: distance_blorg {
     type: number
     sql: ${TABLE}.distance ;;
   }
