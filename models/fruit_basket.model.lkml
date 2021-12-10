@@ -1,6 +1,6 @@
 connection: "partnerred_flightstats"
 
-include: "*.view.lkml"         # include all views in this project
+include: "/views/*.view.lkml"         # include all views in this project
 # include: "*.dashboard.lookml"  # include all dashboards in this project
 
 explore: fruit_basket {}
