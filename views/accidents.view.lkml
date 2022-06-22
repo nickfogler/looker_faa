@@ -10,7 +10,7 @@ view: accidents {
 
   dimension: accident_number {
     type: string
-    sql: ${TABLE}.accident_number ;;
+    sql: ${TABLE}.accident_numbe ;;
   }
 
   dimension: air_carrier {
