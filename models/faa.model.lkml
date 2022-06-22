@@ -47,6 +47,7 @@ explore: flights { # Second portion of below clause dependent on internal compan
   }
 
   join: aircraft {
+    view_label: "Aircrafts"
     type: left_outer
     sql_on: ${flights.tail_num} = ${aircraft.tail_num} ;;
     relationship: many_to_one
