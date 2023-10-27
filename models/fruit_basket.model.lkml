@@ -1,4 +1,4 @@
-connection: "partnerred_flightstats"
+connection: "4mile_bigquery"
 
 include: "/views/*.view.lkml"         # include all views in this project
 # include: "*.dashboard.lookml"  # include all dashboards in this project
